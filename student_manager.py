@@ -46,6 +46,20 @@ class StudentManager:
                 return student.copy()
         return None
 
+    def search_students(self, keyword):
+        """根据学号或姓名关键词查询学生。"""
+        keyword = keyword.strip().lower()
+
+        if not keyword:
+            return []
+
+        return [
+            student.copy()
+            for student in self.students
+            if keyword in student["student_id"].lower()
+            or keyword in student["name"].lower()
+        ]
+
     def list_students(self):
         return [student.copy() for student in self.students]
 
